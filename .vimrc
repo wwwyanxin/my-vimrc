@@ -38,10 +38,18 @@ set ignorecase
 set spell spelllang=en_us
 "打开文件监视。如果在编辑过程中文件发生外部改变（比如被别的编辑器编辑了），就会发出提示
 set autoread
+"关闭换行或格式化时自动添加注释符号
+augroup Format-Options
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+    " This can be done as well instead of the previous line, for setting formatoptions as you choose:
+    " autocmd BufEnter * setlocal formatoptions=crqn2l1j
+augroup END
+
 "------------------------------------macOS config------------------------------------------
 "增强mac键盘的delete键（默认在编辑状态无法删除前面的空白）
 set backspace=indent,eol,start
-
 
 
 
