@@ -103,8 +103,6 @@ Plug 'jiangmiao/auto-pairs'
 
 "目录树
 Plug 'scrooloose/nerdtree'
-"将F2设置为开关NERDTree的快捷键
-map <f2> :NERDTreeToggle<cr>
 "修改树的显示图标
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
@@ -122,6 +120,13 @@ autocmd vimenter * NERDTree
 autocmd VimEnter * NERDTree
 wincmd w
 autocmd VimEnter * wincmd w
+
+"共享目录树
+Plug 'jistr/vim-nerdtree-tabs'
+"将F2设置为开关共享NERDTree的快捷键
+map <f2> :NERDTreeTabsToggle<cr>
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
 
 
 "函数及成员列表
