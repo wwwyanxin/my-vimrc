@@ -30,11 +30,13 @@ set showmatch
 set hlsearch
 "搜索的高亮颜色设置
 hi search term=standout ctermfg=4 ctermbg=248 guifg=DarkBlue guibg=Grey
+"匹配括号的高亮颜色设置
+hi MatchParen term=reverse ctermfg=15 ctermbg=2 guifg=bg guibg=DarkGreen
 "输入搜索模式时，每输入一个字符，就自动跳到第一个匹配的结果
 set incsearch
 "搜索时忽略大小写
 set ignorecase
-"打开英语单词的拼写检查,忽略中文检查(cjk)
+"打开英语单词的拼写检查,忽略中文检查(cjk忽略中日韩等亚洲文字)
 set spell spelllang=en_us,cjk
 "打开文件监视。如果在编辑过程中文件发生外部改变（比如被别的编辑器编辑了），就会发出提示
 set autoread
