@@ -23,7 +23,7 @@ set tabstop=4
 "光标缩在的行高亮
 set cursorline
 "关闭自动折行
-set nowrap
+" set nowrap
 "光标遇到圆括号、方括号、大括号时，自动高亮对应的另一个圆括号、方括号和大括号
 set showmatch
 "搜索时，高亮显示匹配结果
@@ -34,8 +34,8 @@ hi search term=standout ctermfg=4 ctermbg=248 guifg=DarkBlue guibg=Grey
 set incsearch
 "搜索时忽略大小写
 set ignorecase
-"打开英语单词的拼写检查
-set spell spelllang=en_us
+"打开英语单词的拼写检查,忽略中文检查(cjk)
+set spell spelllang=en_us,cjk
 "打开文件监视。如果在编辑过程中文件发生外部改变（比如被别的编辑器编辑了），就会发出提示
 set autoread
 "关闭换行或格式化时自动添加注释符号
