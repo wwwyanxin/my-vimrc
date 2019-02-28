@@ -39,7 +39,7 @@ set ignorecase
 "打开英语单词的拼写检查,忽略中文检查(cjk忽略中日韩等亚洲文字)
 set spell spelllang=en_us,cjk
 "打开文件监视。如果在编辑过程中文件发生外部改变（比如被别的编辑器编辑了），就会发出提示
-set autoread
+"set autoread
 "关闭换行或格式化时自动添加注释符号
 augroup Format-Options
     autocmd!
@@ -63,6 +63,10 @@ call plug#begin('~/.vim/plugged')
 "YCM补全插件
 Plug 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+"set completeopt=longest,menu
+"离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif 
 
 
 
