@@ -8,8 +8,8 @@ syntax on
 set showmode
 "命令模式下，在底部显示，当前键入的指令
 set showcmd
-"支持使用鼠标
-set mouse=a
+"支持使用鼠标 n 普通模式 v 可视模式
+set mouse=nv
 "启用256色
 set t_Co=256
 "自动保持上一行的缩进
@@ -63,8 +63,6 @@ call plug#begin('~/.vim/plugged')
 "YCM补全插件
 Plug 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-"set completeopt=longest,menu
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif 
 
@@ -145,9 +143,9 @@ map <F3> :Tagbar<CR>
 
 
 "有道翻译插件 ctrl+t
-Plug 'ianva/vim-youdao-translater'
-vnoremap <silent> <C-T> :<C-u>Ydv<CR>
-nnoremap <silent> <C-T> :<C-u>Ydc<CR>
+"Plug 'ianva/vim-youdao-translater'
+"vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+"nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 
 
 
