@@ -1,45 +1,69 @@
 "使用utf8编码
 set encoding=utf-8
+
 "显示行号
 set number
+
 "语法高亮
 syntax on
+
 "在底部显示，当前处于命令模式还是插入模式
 set showmode
+
 "命令模式下，在底部显示，当前键入的指令
 set showcmd
+
 "支持使用鼠标 n 普通模式 v 可视模式
 set mouse=nv
+
 "启用256色
 set t_Co=256
+
 "自动保持上一行的缩进
 set autoindent
+
 "C语言风格缩进
 set cindent 
+
 "自动缩进空白字符个数
 set shiftwidth=4
+
 "按下Tab键时，显示空格数
 set tabstop=4
+
 "光标缩在的行高亮
 set cursorline
+
 "关闭自动折行
 " set nowrap
+
 "光标遇到圆括号、方括号、大括号时，自动高亮对应的另一个圆括号、方括号和大括号
 set showmatch
+
 "搜索时，高亮显示匹配结果
 set hlsearch
+
 "搜索的高亮颜色设置
 hi search term=standout ctermfg=4 ctermbg=248 guifg=DarkBlue guibg=Grey
+
 "匹配括号的高亮颜色设置
 hi MatchParen term=reverse ctermfg=15 ctermbg=2 guifg=bg guibg=DarkGreen
+
 "输入搜索模式时，每输入一个字符，就自动跳到第一个匹配的结果
 set incsearch
+
 "搜索时忽略大小写
 set ignorecase
+
 "打开英语单词的拼写检查,忽略中文检查(cjk忽略中日韩等亚洲文字)
 set spell spelllang=en_us,cjk
+
 "打开文件监视。如果在编辑过程中文件发生外部改变（比如被别的编辑器编辑了），就会发出提示
 "set autoread
+
+"设置系统头文件ctags索引位置
+set tags+=~/.vim/systags
+
 "关闭换行或格式化时自动添加注释符号
 augroup Format-Options
     autocmd!
@@ -48,6 +72,8 @@ augroup Format-Options
     " This can be done as well instead of the previous line, for setting formatoptions as you choose:
     " autocmd BufEnter * setlocal formatoptions=crqn2l1j
 augroup END
+
+
 
 "------------------------------------macOS config------------------------------------------
 "增强mac键盘的delete键（默认在编辑状态无法删除前面的空白）
@@ -58,6 +84,8 @@ set backspace=indent,eol,start
 "-------------------------------------------------Plug---------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
+
+
 
 
 "YCM补全插件
@@ -152,6 +180,4 @@ map <F3> :Tagbar<CR>
 
 
 call plug#end()
-
-
 
