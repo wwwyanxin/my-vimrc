@@ -14,7 +14,7 @@ set showmode
 set showcmd
 
 "支持使用鼠标 n 普通模式 v 可视模式
-set mouse=nv
+"set mouse=nv
 
 "启用256色
 set t_Co=256
@@ -49,6 +49,10 @@ hi search term=standout ctermfg=4 ctermbg=248 guifg=DarkBlue guibg=Grey
 "匹配括号的高亮颜色设置
 hi MatchParen term=reverse ctermfg=15 ctermbg=2 guifg=bg guibg=DarkGreen
 
+"补全提示的颜色
+hi Pmenu ctermfg=black ctermbg=gray  guibg=#444444
+hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
+
 "输入搜索模式时，每输入一个字符，就自动跳到第一个匹配的结果
 set incsearch
 
@@ -62,7 +66,29 @@ set spell spelllang=en_us,cjk
 "set autoread
 
 "设置系统头文件ctags索引位置
-set tags+=~/.vim/systags
+"set tags+=~/.vim/systags
+
+
+" 显示状态行当前设置
+" %F 完整文件路径名
+" %m 当前缓冲被修改标记
+" %m 当前缓冲只读标记
+" %h 帮助缓冲标记
+" %w 预览缓冲标记
+" %Y 文件类型
+" %b ASCII值
+" %B 十六进制值
+" %l 行数
+" %v 列数
+" %p 当前行数占总行数的的百分比
+" %L 总行数
+" %{...} 评估表达式的值，并用值代替
+" %{"[fenc=".(&fenc==""?&enc:&fenc).((exists("+bomb") && &bomb)?"+":"")."]"} 显示文件编码
+" %{&ff} 显示文件类型
+set statusline=%F%m%r%h%w%=\ [%Y]\ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\"+\":\"\").\"]\"}\ \ [%l/%L,%v][%p%%]
+
+"laststatus = 0 ，不显式状态行  laststatus = 1 ，仅当窗口多于一个时显示行  laststatus = 2 ，总是显式
+set laststatus=2
 
 "关闭换行或格式化时自动添加注释符号
 augroup Format-Options
@@ -142,8 +168,8 @@ let g:NERDTreeDirArrowCollapsible = '-'
 let g:NERDTreeWinPos='left'
 "窗口宽度
 let NERDTreeWinSize=25
-"不显示隐藏文件
-let g:NERDTreeHidden=0
+"显示隐藏文件
+let NERDTreeShowHidden=1
 "当NERDTree为剩下的唯一窗口时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "打开vim时自动打开NERDTree
@@ -170,11 +196,32 @@ let g:tagbar_width=30
 map <F3> :Tagbar<CR>
 
 
-"有道翻译插件 ctrl+t
-"Plug 'ianva/vim-youdao-translater'
-"vnoremap <silent> <C-T> :<C-u>Ydv<CR>
-"nnoremap <silent> <C-T> :<C-u>Ydc<CR>
+"自动生成tag
+Plug 'ludovicchabant/vim-gutentags'
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" 配置ctags 排除目录或文件
+let g:gutentags_ctags_extra_args += ['--exclude=node_modules']
+let g:gutentags_ctags_extra_args += ['--exclude=.git']
+let g:gutentags_ctags_extra_args += ['--exclude=*.md']
+let g:gutentags_ctags_extra_args += ['--exclude=*.svg']
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+	silent! call mkdir(s:vim_tags, 'p')
+endif
 
+
+"版本控制工具
+Plug 'mhinz/vim-signify'
 
 
 
