@@ -119,6 +119,8 @@ Plug 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif 
+"智能跳转到定义处快捷键
+nnoremap <leader>] :YcmCompleter GoTo<CR>
 
 
 
